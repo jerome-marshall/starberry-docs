@@ -19,63 +19,64 @@ let apiResponse = ApiRequest(requestObj, cb)
 // ...
 ```
 
+### Parameters
+
+| Name         | Type       | Description                                   |
+| :----------- | :--------- | :-------------------------------------------- |
+| `requestObj` | `object`   | The request object.                           |
+| `cb`         | `function` | The callback function to handle the response. |
+
+### Returns
+
+| Type     | Description          |
+| :------- | :------------------- |
+| `object` | The response object. |
+
 ### Examples
 
+Here's an example of using the `APIRequest` utility to make a `GET` request:
+
 ```js
-// GET request example
+import { ApiRequest } from "@starberry/gatsby-theme-utils/APIRequest"
+
 const requestObj = {
   method: "GET",
-  url: "https://api.example.com/get-data",
-  headers: {
-    Authorization: "Bearer xxxxx",
+  header: {
+    Authorization: "Bearer myToken",
   },
   body: {
     param1: "value1",
     param2: "value2",
   },
+} // request object
+
+const cb = (response) => {
+  console.log(response)
 }
 
-const handleResponse = (data) => {
-  console.log(data)
-}
+const apiResponse = ApiRequest(requestObj, cb)
+```
 
-ApiRequest(requestObj, handleResponse)
+And here's an example of using the APIRequest utility to make a POST request:
 
-// POST request example
+```js
+import { ApiRequest } from "@starberry/gatsby-theme-utils/APIRequest"
+
 const requestObj = {
   method: "POST",
-  url: "https://api.example.com/post-data",
-  headers: {
-    Authorization: "Bearer xxxxx",
+  header: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer myToken",
   },
   body: {
     param1: "value1",
     param2: "value2",
   },
+} // request object
+
+const cb = (response) => {
+  console.log(response)
 }
 
-const handleResponse = (data) => {
-  console.log(data)
-}
-
-ApiRequest(requestObj, handleResponse)
-
-// PUT request example
-const requestObj = {
-  method: "PUT",
-  url: "https://api.example.com/put-data",
-  headers: {
-    Authorization: "Bearer xxxxx",
-  },
-  body: {
-    param1: "value1",
-    param2: "value2",
-  },
-}
-
-const handleResponse = (data) => {
-  console.log(data)
-}
-
-ApiRequest(requestObj, handleResponse)
+const apiResponse = ApiRequest(requestObj, cb)
 ```
