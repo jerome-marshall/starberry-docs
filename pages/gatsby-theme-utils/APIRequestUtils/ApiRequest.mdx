@@ -1,0 +1,81 @@
+# ApiRequest
+
+This function is used to make API calls. It takes a `request` object and a `cb` callback function as input. The `request` object contains the HTTP method (GET, POST or PUT), headers and body of the request. The `cb` function is called with the response data.
+
+### Usage
+
+```js
+const { ApiRequest } = require("@starberry/gatsby-theme-utils/APIRequest")
+
+let requestObj = {
+  method: "", // request method
+  header: "",
+  body: "",
+} // request object
+
+let cb // callback function to handle response
+
+let apiResponse = ApiRequest(requestObj, cb)
+// ...
+```
+
+### Examples
+
+```js
+// GET request example
+const requestObj = {
+  method: "GET",
+  url: "https://api.example.com/get-data",
+  headers: {
+    Authorization: "Bearer xxxxx",
+  },
+  body: {
+    param1: "value1",
+    param2: "value2",
+  },
+}
+
+const handleResponse = (data) => {
+  console.log(data)
+}
+
+ApiRequest(requestObj, handleResponse)
+
+// POST request example
+const requestObj = {
+  method: "POST",
+  url: "https://api.example.com/post-data",
+  headers: {
+    Authorization: "Bearer xxxxx",
+  },
+  body: {
+    param1: "value1",
+    param2: "value2",
+  },
+}
+
+const handleResponse = (data) => {
+  console.log(data)
+}
+
+ApiRequest(requestObj, handleResponse)
+
+// PUT request example
+const requestObj = {
+  method: "PUT",
+  url: "https://api.example.com/put-data",
+  headers: {
+    Authorization: "Bearer xxxxx",
+  },
+  body: {
+    param1: "value1",
+    param2: "value2",
+  },
+}
+
+const handleResponse = (data) => {
+  console.log(data)
+}
+
+ApiRequest(requestObj, handleResponse)
+```

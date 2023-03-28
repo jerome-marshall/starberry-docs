@@ -1,0 +1,221 @@
+# `gatsby-theme-utils`
+
+(was `gatsby-starberry-utils`)
+
+The collection utilities which is developed by the starberry developers. It created as node package we can install and use that in gatsby projects.
+
+## Usage
+
+You'll need a GitHub personal access token set up for the @starberry namespace.
+
+```shell
+npm install @starberry/gatsby-theme-utils
+```
+
+### [APIRequest](dist/APIRequest.js)
+
+The `APIRequest` utility allows you to make API calls. It takes a request object as input, which should contain the method (e.g. GET or POST), headers, and body of the request. You can also provide a callback function to handle the response.
+
+```js
+const { ApiRequest } = require("@starberry/gatsby-theme-utils/APIRequest")
+
+let requestObj = {
+  method: "", // request method
+  header: "",
+  body: "",
+} // request object
+let cb
+let apiResponse = ApiRequest(requestObj, cb)
+// ...
+```
+
+### [AlgoliaQueries](dist/AlgoliaQueries.js)
+
+This `AlgoliaQueries` utils to we can perform Algolia quries.
+
+```js
+const { queries } = require("@starberry/gatsby-theme-utils/AlgoliaQueries")
+const data = queries()
+```
+
+### [Animations](dist/Animations.js)
+
+`Animations` it contains many basic animations for image's and section.Few animation usage only listed here please refer her to get more animations [here](dist/Animations.js).
+
+```js
+const { imageZoom, fadeIn, fadeInFromBottom } = require("@starberry/gatsby-theme-utils/Animations")
+
+const imageZoom = imageZoom()
+const fadeIn = imagefadeInZoom()
+const fadeInFromBottom = fadeInFromBottom()
+```
+
+### [BasicUtils](dist/BasicUtils.js)
+
+`BasicUtils` it contains small helper functions like `AppendScript` , `ScrollToTop` etc. For more helper function please refer [here](dist/BasicUtils.js).
+
+```js
+const { AppendScript, startsWith, ScrollToTop } = require("@starberry/gatsby-theme-utils/BasicUtils")
+```
+
+### [CleanedHtml](dist/CleanedHtml.js)
+
+`CleanedHtml` it clean the html tags in content.
+
+```js
+const { cleanP, onlyNumbers } = require("@starberry/gatsby-theme-utils/CleanedHtml")
+const data = cleanP("<p>Test</p>") //It remove the <p> html tag
+const data = onlyNumbers("234abc") // Return pnly numbers
+```
+
+### [CustomVideo](dist/CustomVideo.js)
+
+`CustomVideo` it create custom video player.
+
+```js
+const { CustomVideo } = require("@starberry/gatsby-theme-utils/CustomVideo")
+```
+
+### [FormValidation](dist/FormValidation.js)
+
+`FormValidation` it validate the input form fields.
+
+```js
+const { FormValidation } = require("@starberry/gatsby-theme-utils/FormValidation")
+
+const formInputs = //FormObject
+const data = FormValidation(formInputs)
+```
+
+### [GetGatsbyImage](dist/GetGatsbyImage.js)
+
+`GetGatsbyImage` transform the image using gatsby function.
+
+```js
+const { GetGatsbyImage } = require("@starberry/gatsby-theme-utils/GetGatsbyImage")
+
+const data = GetGatsbyImage(props)
+```
+
+### [GetGGFXImage](dist/GetGGFXImage.js)
+
+`GetGGFXImage` transform the image using GGFX function.
+
+```js
+const { GetGGFXImage } = require("@starberry/gatsby-theme-utils/GetGGFXImage")
+
+const data = GetGGFXImage(props)
+```
+
+### [GTMevent](dist/GTMevent.js)
+
+`GTMevent` it trigger the gtm events
+
+```js
+const { gtmEvent } = require("@starberry/gatsby-theme-utils/GTMevent")
+
+const data = gtmEvent(eventName, FormType, formNme)
+```
+
+### [GetPageURL](dist/GetPageURL.js)
+
+Using this utils to we can get page URL .
+
+```js
+const { GetPageURL } = require("@starberry/gatsby-theme-utils/GetPageURL")
+
+const content = GetPageURL(data, manualLink)
+```
+
+### [Links](dist/Links.js)
+
+This is the wrap utils for GatsbyLink component to handle terlling slash for relative path
+
+```js
+const { GatsbyLinkLocationWrapper } = require("@starberry/gatsby-theme-utils/Links")
+
+const content = GatsbyLinkLocationWrapper(data)
+```
+
+### [LoadExternalScript](dist/LoadExternalScript.js)
+
+`LoadExternalScript` this utils will load external scripts in gatsby.
+
+```js
+const { LoadExternalScript } = require("@starberry/gatsby-theme-utils/LoadExternalScript")
+
+<LoadExternalScript
+    src={googleMapScript}
+    async="true"
+    defer="true"
+    // loadScript={useEffect}
+appendScriptTo="head"
+/>
+```
+
+### [PageBreadcrumb](dist/PageBreadcrumb.js)
+
+Page data to it build breadcumbs.
+
+```js
+const { PageBreadcrumb } = require("@starberry/gatsby-theme-utils/PageBreadcrumb")
+
+const data = PageBreadcrumb(data, staticList)
+```
+
+### [PropertySearch](dist/PropertySearch.js)
+
+`PropertySearch` this util will perform search operation using Algolia index.
+
+```js
+const { searchStateToUrl } = require("@starberry/gatsby-theme-utils/PropertySearch")
+const content = searchStateToUrl(index_name, state, location)
+```
+
+### [SearchResultBox](dist/SearchResultBox.js)
+
+`SearchResultBox` is area search Autosuggest input box.
+
+```js
+const { SearchResultBox } = require("@starberry/gatsby-theme-utils/SearchResultBox")
+```
+
+### [SendMail](dist/SendMail.js)
+
+It send the mail to user.
+
+```js
+const { SendMail } = require("@starberry/gatsby-theme-utils/SendMail")
+const data = SendMail(mailObj)
+```
+
+### [SEO](dist/SEO.js)
+
+It is SEO related component.
+
+```js
+const { SEO } = require("@starberry/gatsby-theme-utils/SEO")
+```
+
+### [Share](dist/Share.js)
+
+Share buttons enable for blog.
+
+```js
+const { Share } = require("@starberry/gatsby-theme-utils/Share")
+```
+
+### [TinyEditor](dist/TinyEditor.js)
+
+It convert TinyEditor field value to html content.
+
+```js
+const { Content } = require("@starberry/gatsby-theme-utils/TinyEditor")
+
+const data = {
+  key: "value",
+  foo: "bar",
+} // Tiny field data
+
+const content = Content(data)
+```
