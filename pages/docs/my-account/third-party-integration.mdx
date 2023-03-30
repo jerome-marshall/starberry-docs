@@ -1,0 +1,129 @@
+# My Account - Third Party Website Integration
+
+import { Callout, Tab, Tabs, Steps } from "nextra-theme-docs"
+
+## Overview
+
+My Account Enterprise is a product developed by Starberry that helps estate agents streamline their sales process. It allows clients to seamlessly move through the sales funnel without having to spend hours updating their CRM system whenever an activity occurs.
+
+This documentation is for clients who already have a website and want to integrate My Account Enterprise with it. The following sections explain how to add the integration script, call the necessary functions, and use the different features of My Account Enterprise.
+
+## Integrate My Account
+
+<Steps>
+### Add the My Account website integration script
+To start integrating My Account Enterprise with your website, you need to add the integration script to the `<head>` section of your website. The script is provided by Starberry and will handle the Save search, Save property, Auto-fill forms, and Book a viewing widget.
+
+Add the following script to your website, replacing `<MyaccountUrl>` with your project-specific URL provided by Starberry:
+
+```js copy /<MyaccountUrl>/
+<script src="<MyaccountUrl>/widgets/core/mascript.min.js" defer=""></script>
+```
+
+<Callout type="info" emoji="ℹ">
+`<MyaccountUrl>` is project specific and will be provided to you by Starberry
+</Callout>
+
+### Call the myAccountUrl function with required parameters
+
+After including the integration script on your website, you can access the `myAccountUrl` function in the DOM. Call this function with the necessary parameters to customize the default settings.
+
+```js copy
+myAccount({
+  myAccountUrl: "<MyaccountUrl>", // your project-specific URL provided by Starberry
+  apiUrl: "<ApiUrl>", // your project-specific API URL provided by Starberry
+  cookieDomain: ".starberry.com", // your public domain name
+})
+```
+
+<Callout type="info" emoji="ℹ">
+  You can overwrite all default parameters when you need to. Check the available parameters
+  [here](/docs/my-account/third-party-integration#parameters).
+</Callout>
+
+### Start adding the features
+
+Here's how to use the different features of My Account Enterprise on your website.
+
+#### Save Search
+
+If a user is looking for a property to buy, they can save their search criteria on your website. Any saved searches will be displayed on My Account Enterprise along with the saved criteria.
+Please provide the applicable search params in the following order, make sure all data is sent in lowercase.
+
+```json copy
+{
+  "department": "residential/commercial",
+  "search_type": "sales/lettings",
+  "areas": "area name if exists or pass default location",
+  "bedroom": "no of beds",
+  "minPrice": "Min Price",
+  "maxPrice": "Max Price",
+  "building": "building type",
+  "feature": "features if any"
+}
+```
+
+And stringify them with `JSON.stringify()`, example below
+
+```html copy /data-mavalue='{"search_type":"sales","areas":"west yorkshire"}'/
+<div class="icon-item">
+  <span data-mavalue='{"search_type":"sales","areas":"west yorkshire"}' class="ma-sb-myacc ma-save-search">
+    <span class="save-text">Save Search</span>
+    <span class="saved-text">Saved</span>
+  </span>
+</div>
+```
+
+<Callout>
+  When a search criteria is saved, the `Saved` class will automatically be added to the `Save Search` element. You can override this if necessary.
+</Callout>
+
+#### Save Property / Wishlist
+
+If a user is interested in a property, they can save it to their wishlist on your website. Any saved properties will be displayed on My Account Enterprise.
+
+To save a property, add the below element with the property CRM ID:
+
+```html copy /data-mapropertyid="MKT220287"/
+<div data-mapropertyid="MKT220287" class="ma-sb-myacc ma-save-property">
+  <span class="save-text">Save Property</span>
+  <span class="saved-text">Saved</span>
+</div>
+```
+
+<Callout>
+  When a property is saved, the `Saved` class will automatically be added to the wishlist element. You can override this if necessary.
+</Callout>
+
+#### Book a Viewing Widget
+
+The Book a Viewing Widget captures basic user information and provides real-time availability slots for the user to request a viewing. The availability slots can either be based on the property's calendar or the negotiator's calendar, depending on how you configure the widget.
+
+To add the Book a Viewing Widget to your website, include the following code on your page:
+
+```html copy
+<button class="ma-book-viewing ma-sb-myacc" data-mapropertyid="PROPERTY_CRM_ID_HERE">Book a Viewing</button>
+```
+
+Replace `PROPERTY_CRM_ID_HERE` with the ID of the property in your CRM system. You can find the property ID in your CRM's admin interface.
+
+The `ma-book-viewing` and `ma-sb-myacc` classes are required for the widget to function properly.
+
+</Steps>
+
+## Parameters
+
+| Name                          | Default                                            | Description                                                               |
+| ----------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------- |
+| `myAccountUrl`                | Starberry will provide                             | Your project-specific URL provided by Starberry                           |
+| `apiUrl`                      | Starberry will provide                             | Your project-specific API URL provided by Starberry                       |
+| `cookieDomain`                | .starberry.com                                     | Your public domain name                                                   |
+| `searchDataAttribute`         | mavalue                                            | The data attribute that contains the search criteria                      |
+| `propertyDataAttribute`       | mapropertyid                                       | The data attribute that contains the property ID                          |
+| `searchItemClass`             | ma-save-search                                     | The class of the search element                                           |
+| `propertyItemClass`           | ma-save-property                                   | The class of the property element                                         |
+| `bookViewingBtnClass`         | ma-book-viewing                                    | The class of the Book a Viewing button that will trigger the widget       |
+| `bookViewingBtnDataAttribute` | mapropertyid                                       | The data attribute that contains the property ID                          |
+| `actionTarget`                | .ma-sb-myacc                                       | The class of the element that will trigger the widget                     |
+| `activeClass`                 | saved                                              | The class that will be added to the element when the action is successful |
+| `autoFillFields`              | `{ name: 'name', email: 'email', phone: 'phone' }` | The fields that will be auto-filled when the user is logged in            |
