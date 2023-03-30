@@ -1,0 +1,108 @@
+# ApiRequest
+
+This function is used to make API calls. It takes a `request` object and a `cb` callback function as the arguments. The `request` object contains the HTTP method (GET, POST or PUT), headers and body of the request. The `cb` function is called with the response data.
+
+### Syntax
+
+```js
+ApiRequest(requestObj, cb)
+```
+
+### Parameters
+
+| Name         | Type       | Description                                   |
+| :----------- | :--------- | :-------------------------------------------- |
+| `requestObj` | `object`   | The request object.                           |
+| `cb`         | `function` | The callback function to handle the response. |
+
+### Usage
+
+Here are some examples of how to use the `ApiRequest` function.
+
+import { Tab, Tabs } from "nextra-theme-docs"
+
+<Tabs items={["GET", "POST", "PUT"]}>
+  <Tab>
+
+```js copy
+import { ApiRequest } from "@starberry/gatsby-theme-utils/APIRequest"
+
+const requestObj = {
+  method: "GET",
+  header: {
+    Authorization: "Bearer myToken",
+  },
+  body: {
+    param1: "value1",
+    param2: "value2",
+  },
+} // request object
+
+const handleResponse = (response) => {
+  console.log(response)
+}
+
+ApiRequest(requestObj, handleResponse)
+```
+
+  </Tab>
+  <Tab>
+
+```js copy
+import { ApiRequest } from "@starberry/gatsby-theme-utils/APIRequest"
+
+const requestObj = {
+  method: "POST",
+  header: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer myToken",
+  },
+  body: {
+    param1: "value1",
+    param2: "value2",
+  },
+} // request object
+
+const cb = (response) => {
+  console.log(response)
+}
+
+const apiResponse = ApiRequest(requestObj, cb)
+```
+
+  </Tab>
+
+  <Tab>
+
+```js copy
+import { ApiRequest } from "@starberry/gatsby-theme-utils/APIRequest"
+
+const requestObj = {
+  method: "PUT",
+  header: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer myToken",
+  },
+  body: {
+    param1: "value1",
+    param2: "value2",
+  },
+} // request object
+
+const cb = (response) => {
+  console.log(response)
+}
+
+const apiResponse = ApiRequest(requestObj, cb)
+```
+
+  </Tab>
+</Tabs>
+
+import { Callout } from 'nextra-theme-docs'
+ 
+<Callout >
+  `ApiRequest` uses the `getRequest`, `postRequest` and `putRequest` functions from the `@starberry/gatsby-theme-utils` package. For more information about these functions, see the [getRequest](/gatsby-theme-utils/ApiRequest/get), [postRequest](/gatsby-theme-utils/ApiRequest/post) and [putRequest](/gatsby-theme-utils/ApiRequest/put) pages.
+</Callout
+
+>
